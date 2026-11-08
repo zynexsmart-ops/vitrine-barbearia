@@ -1,0 +1,638 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Barbearia Modelo — Studio & Club | Agendamento Online</title>
+  <meta name="description" content="Mais que um corte. Seu ritual de estilo e respeito. Agende seu horário 100% online, sem filas de espera na Barbearia Modelo — Studio & Club." />
+  <meta name="theme-color" content="#09090b" />
+
+  <!-- Google Fonts: Oswald, Playfair Display & Inter -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Oswald:wght@500;600;700&family=Playfair+Display:ital,wght@0,600;0,700;1,400&display=swap" rel="stylesheet" />
+
+  <!-- Tailwind CSS via CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            dark: {
+              950: '#09090b',
+              900: '#121215',
+              800: '#1c1c21',
+              700: '#27272f'
+            },
+            gold: {
+              300: '#fde047',
+              400: '#eab308',
+              500: '#d4af37',
+              600: '#b59024'
+            },
+            light: '#f4f4f5'
+          },
+          fontFamily: {
+            sans: ['Inter', 'sans-serif'],
+            display: ['Oswald', 'sans-serif'],
+            serif: ['Playfair Display', 'serif']
+          },
+          boxShadow: {
+            'gold-glow': '0 0 25px -5px rgba(212, 175, 55, 0.35)',
+            'gold-glow-lg': '0 0 40px -5px rgba(212, 175, 55, 0.5)'
+          }
+        }
+      }
+    };
+  </script>
+
+  <!-- Lucide Icons via CDN -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+
+  <style>
+    body {
+      background-color: #09090b;
+      color: #f4f4f5;
+      overflow-x: hidden;
+    }
+
+    /* Subtle noise and luxury gold gradient utilities */
+    .gold-gradient-text {
+      background: linear-gradient(135deg, #fff6d6 0%, #d4af37 50%, #eab308 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .gold-gradient-bg {
+      background: linear-gradient(135deg, #d4af37 0%, #eab308 50%, #b59024 100%);
+    }
+
+    .gold-gradient-bg:hover {
+      background: linear-gradient(135deg, #eab308 0%, #d4af37 50%, #ca9e26 100%);
+    }
+
+    .hero-bg {
+      background-image:
+        linear-gradient(to bottom, rgba(9, 9, 11, 0.78) 0%, rgba(9, 9, 11, 0.85) 60%, rgba(9, 9, 11, 1) 100%),
+        url('https://images.unsplash.com/photo-1585747860715-2ba37e788b70?auto=format&fit=crop&w=1920&q=85');
+      background-size: cover;
+      background-position: center;
+    }
+
+    /* Custom Scrollbar */
+    ::-webkit-scrollbar {
+      width: 8px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #09090b;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #27272f;
+      border-radius: 4px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: #d4af37;
+    }
+  </style>
+</head>
+<body class="bg-dark-950 text-light font-sans antialiased selection:bg-gold-500 selection:text-dark-950">
+
+  <!-- 1. HEADER FIXO (GLASSMORPHISM) -->
+  <header id="navbar" class="fixed top-0 left-0 right-0 z-50 transition-all duration-300 bg-dark-950/75 backdrop-blur-md border-b border-white/10">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex items-center justify-between h-20">
+        <!-- Logo -->
+        <a href="#inicio" class="flex items-center gap-3 group focus:outline-none">
+          <div class="w-11 h-11 rounded-xl bg-dark-900 border border-gold-500/40 flex items-center justify-center group-hover:border-gold-400 group-hover:shadow-gold-glow transition-all duration-300">
+            <i data-lucide="scissors" class="w-5 h-5 text-gold-500 transform -rotate-45 group-hover:rotate-0 transition-transform duration-300"></i>
+          </div>
+          <div class="flex flex-col">
+            <span class="font-display text-xl tracking-wider uppercase font-bold text-white leading-none">
+              Barbearia <span class="text-gold-500">Modelo</span>
+            </span>
+            <span class="text-[10px] uppercase tracking-[0.28em] text-zinc-400 mt-1">
+              Studio &amp; Club
+            </span>
+          </div>
+        </a>
+
+        <!-- Desktop Navigation -->
+        <nav class="hidden md:flex items-center gap-8" aria-label="Navegação Principal">
+          <a href="#inicio" class="text-sm font-medium text-zinc-300 hover:text-gold-400 transition-colors">Início</a>
+          <a href="#servicos" class="text-sm font-medium text-zinc-300 hover:text-gold-400 transition-colors">Serviços</a>
+          <a href="#diferenciais" class="text-sm font-medium text-zinc-300 hover:text-gold-400 transition-colors">Diferenciais</a>
+          <a href="#localizacao" class="text-sm font-medium text-zinc-300 hover:text-gold-400 transition-colors">Localização</a>
+        </nav>
+
+        <!-- Desktop CTA Button -->
+        <div class="hidden md:flex items-center">
+          <button
+            type="button"
+            data-cal-link="barbearia-modelo"
+            data-cal-config='{"layout":"month_view","theme":"dark"}'
+            class="gold-gradient-bg text-dark-950 font-semibold text-sm px-6 py-3 rounded-lg shadow-gold-glow hover:shadow-gold-glow-lg hover:scale-[1.02] active:scale-[0.98] transition-all duration-200 flex items-center gap-2 cursor-pointer"
+          >
+            <i data-lucide="calendar-check" class="w-4 h-4 stroke-[2.5]"></i>
+            <span>Agendar Agora</span>
+          </button>
+        </div>
+
+        <!-- Mobile Menu Toggle -->
+        <div class="flex md:hidden">
+          <button
+            id="mobile-menu-btn"
+            type="button"
+            aria-label="Abrir Menu"
+            aria-expanded="false"
+            class="p-2.5 rounded-lg bg-dark-900 border border-white/10 text-zinc-300 hover:text-gold-400 hover:border-gold-500/40 transition-colors"
+          >
+            <i data-lucide="menu" id="menu-icon-open" class="w-6 h-6"></i>
+            <i data-lucide="x" id="menu-icon-close" class="w-6 h-6 hidden"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Mobile Navigation Drawer -->
+    <div id="mobile-menu" class="hidden md:hidden bg-dark-900/95 backdrop-blur-xl border-b border-white/10 px-4 pt-3 pb-6 space-y-3">
+      <a href="#inicio" class="mobile-nav-link block px-3 py-2.5 rounded-lg text-base font-medium text-zinc-200 hover:bg-white/5 hover:text-gold-400 transition-colors">Início</a>
+      <a href="#servicos" class="mobile-nav-link block px-3 py-2.5 rounded-lg text-base font-medium text-zinc-200 hover:bg-white/5 hover:text-gold-400 transition-colors">Serviços e Preços</a>
+      <a href="#diferenciais" class="mobile-nav-link block px-3 py-2.5 rounded-lg text-base font-medium text-zinc-200 hover:bg-white/5 hover:text-gold-400 transition-colors">Diferenciais</a>
+      <a href="#localizacao" class="mobile-nav-link block px-3 py-2.5 rounded-lg text-base font-medium text-zinc-200 hover:bg-white/5 hover:text-gold-400 transition-colors">Localização e Horários</a>
+      <div class="pt-2">
+        <button
+          type="button"
+          data-cal-link="barbearia-modelo"
+          data-cal-config='{"layout":"month_view","theme":"dark"}'
+          class="w-full gold-gradient-bg text-dark-950 font-bold text-base px-5 py-3.5 rounded-lg shadow-gold-glow flex items-center justify-center gap-2 cursor-pointer"
+        >
+          <i data-lucide="calendar-check" class="w-5 h-5 stroke-[2.5]"></i>
+          <span>Agendar Agora</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <!-- 2. HERO SECTION (IMPACTO VISUAL) -->
+    <section id="inicio" class="relative min-h-screen flex items-center justify-center pt-28 pb-20 lg:pt-36 lg:pb-28 hero-bg overflow-hidden">
+      <!-- Ambient Decorative Glows -->
+      <div class="pointer-events-none absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[520px] h-[520px] bg-gold-500/10 rounded-full blur-[130px]"></div>
+
+      <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+        <!-- Top Badge -->
+        <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-dark-900/90 border border-gold-500/30 text-gold-400 text-xs sm:text-sm font-medium mb-8 shadow-lg backdrop-blur-sm">
+          <span>★ A Experiência Definitiva em Cuidado Masculino</span>
+        </div>
+
+        <!-- Headline -->
+        <h1 class="font-display uppercase font-bold text-4xl sm:text-6xl lg:text-7xl tracking-tight text-white max-w-4xl mx-auto leading-[1.08]">
+          Mais que um corte. <br class="hidden sm:inline" />
+          <span class="gold-gradient-text">Seu ritual de estilo e respeito.</span>
+        </h1>
+
+        <!-- Subheadline -->
+        <p class="mt-6 text-base sm:text-lg lg:text-xl text-zinc-300 max-w-2xl mx-auto font-normal leading-relaxed">
+          Esqueça as filas de espera e as mensagens sem resposta. Nosso agendamento é <strong class="text-white font-semibold">100% online</strong>: escolha seu serviço, selecione o melhor horário e chegue apenas para ser atendido com pontualidade britânica.
+        </p>
+
+        <!-- Dual CTAs -->
+        <div class="mt-10 flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-5">
+          <a
+            href="#servicos"
+            class="w-full sm:w-auto gold-gradient-bg text-dark-950 font-bold text-base px-8 py-4 rounded-xl shadow-gold-glow hover:shadow-gold-glow-lg hover:scale-[1.02] active:scale-[0.99] transition-all duration-200 flex items-center justify-center gap-2.5"
+          >
+            <i data-lucide="scissors" class="w-5 h-5 stroke-[2.2]"></i>
+            <span>Escolher Serviço e Horário</span>
+          </a>
+
+          <button
+            type="button"
+            data-cal-link="barbearia-modelo"
+            data-cal-config='{"layout":"month_view","theme":"dark"}'
+            class="w-full sm:w-auto bg-dark-900/80 hover:bg-dark-800 text-light border border-gold-500/40 hover:border-gold-400 font-semibold text-base px-8 py-4 rounded-xl backdrop-blur-md transition-all duration-200 flex items-center justify-center gap-2.5 cursor-pointer"
+          >
+            <i data-lucide="zap" class="w-5 h-5 text-gold-400"></i>
+            <span>Agendamento Rápido</span>
+          </button>
+        </div>
+
+        <!-- Quick Trust Metrics -->
+        <div class="mt-14 pt-10 border-t border-white/10 max-w-3xl mx-auto grid grid-cols-3 gap-4 sm:gap-8">
+          <div class="flex flex-col items-center">
+            <span class="font-display text-2xl sm:text-3xl font-bold text-gold-400">4.9 ★</span>
+            <span class="text-xs sm:text-sm text-zinc-400 mt-1">Avaliação dos Clientes</span>
+          </div>
+          <div class="flex flex-col items-center border-x border-white/10 px-2">
+            <span class="font-display text-2xl sm:text-3xl font-bold text-white">100% Online</span>
+            <span class="text-xs sm:text-sm text-zinc-400 mt-1">Sem Filas de Espera</span>
+          </div>
+          <div class="flex flex-col items-center">
+            <span class="font-display text-2xl sm:text-3xl font-bold text-gold-400">Ambiente VIP</span>
+            <span class="text-xs sm:text-sm text-zinc-400 mt-1">Café &amp; Cerveja Artesanal</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 3. SEÇÃO DE SERVIÇOS E PREÇOS (INTEGRADA AO CAL.COM) -->
+    <section id="servicos" class="py-20 lg:py-28 bg-dark-950 relative">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <!-- Section Header -->
+        <div class="text-center max-w-3xl mx-auto mb-16">
+          <span class="text-gold-400 font-semibold text-xs sm:text-sm uppercase tracking-[0.25em] block mb-3">
+            Menu de Experiências
+          </span>
+          <h2 class="font-display text-3xl sm:text-5xl uppercase font-bold text-white tracking-tight">
+            Serviços &amp; <span class="gold-gradient-text">Investimento</span>
+          </h2>
+          <p class="mt-4 text-zinc-400 text-base sm:text-lg">
+            Selecione o procedimento desejado abaixo para abrir a agenda em tempo real e garantir seu horário.
+          </p>
+        </div>
+
+        <!-- 3 Interactive Service Cards -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8 items-stretch">
+
+          <!-- Card 1: Corte Degradê / Social -->
+          <article class="group relative rounded-2xl bg-dark-900 border border-white/10 hover:border-gold-500/70 transition-all duration-300 p-7 sm:p-8 flex flex-col justify-between hover:-translate-y-1.5 hover:shadow-gold-glow">
+            <div>
+              <div class="flex items-center justify-between gap-4 mb-6">
+                <div class="w-12 h-12 rounded-xl bg-dark-800 border border-gold-500/30 flex items-center justify-center text-gold-400 group-hover:bg-gold-500 group-hover:text-dark-950 transition-colors duration-300">
+                  <i data-lucide="scissors" class="w-6 h-6"></i>
+                </div>
+                <span class="inline-flex items-center gap-1.5 text-xs font-medium text-zinc-300 bg-dark-800 border border-white/10 px-3 py-1.5 rounded-full">
+                  <i data-lucide="clock" class="w-3.5 h-3.5 text-gold-400"></i>
+                  40 min
+                </span>
+              </div>
+
+              <h3 class="font-display text-2xl uppercase font-bold text-white group-hover:text-gold-400 transition-colors">
+                Corte Degradê / Social
+              </h3>
+
+              <p class="mt-3 text-sm sm:text-base text-zinc-400 leading-relaxed">
+                Acabamento impecável na tesoura ou máquina, finalização na navalha e lavagem refrescante.
+              </p>
+            </div>
+
+            <div class="mt-8 pt-6 border-t border-white/10">
+              <div class="flex items-baseline justify-between mb-6">
+                <span class="text-xs uppercase tracking-wider text-zinc-400">Valor do serviço</span>
+                <span class="font-display text-3xl font-bold text-white">R$ 45,00</span>
+              </div>
+
+              <button
+                type="button"
+                data-cal-link="barbearia-modelo/corte"
+                data-cal-config='{"layout":"month_view","theme":"dark"}'
+                class="w-full py-3.5 px-5 rounded-xl bg-dark-800 hover:bg-gold-500 text-light hover:text-dark-950 border border-gold-500/40 hover:border-transparent font-semibold text-sm transition-all duration-200 flex items-center justify-center gap-2 cursor-pointer"
+              >
+                <i data-lucide="calendar" class="w-4 h-4"></i>
+                <span>Agendar este serviço</span>
+              </button>
+            </div>
+          </article>
+
+          <!-- Card 2: Barba Terapia (Toalha Quente) -->
+          <article class="group relative rounded-2xl bg-dark-900 border border-white/10 hover:border-gold-500/70 transition-all duration-300 p-7 sm:p-8 flex flex-col justify-between hover:-translate-y-1.5 hover:shadow-gold-glow">
+            <div>
+              <div class="flex items-center justify-between gap-4 mb-6">
+                <div class="w-12 h-12 rounded-xl bg-dark-800 border border-gold-500/30 flex items-center justify-center text-gold-400 group-hover:bg-gold-500 group-hover:text-dark-950 transition-colors duration-300">
+                  <i data-lucide="sparkles" class="w-6 h-6"></i>
+                </div>
+                <span class="inline-flex items-center gap-1.5 text-xs font-medium text-zinc-300 bg-dark-800 border border-white/10 px-3 py-1.5 rounded-full">
+                  <i data-lucide="clock" class="w-3.5 h-3.5 text-gold-400"></i>
+                  30 min
+                </span>
+              </div>
+
+              <h3 class="font-display text-2xl uppercase font-bold text-white group-hover:text-gold-400 transition-colors">
+                Barba Terapia (Toalha Quente)
+              </h3>
+
+              <p class="mt-3 text-sm sm:text-base text-zinc-400 leading-relaxed">
+                Alinhamento perfeito, esfoliação facial, óleos essenciais e relaxamento com toalha quente.
+              </p>
+            </div>
+
+            <div class="mt-8 pt-6 border-t border-white/10">
+              <div class="flex items-baseline justify-between mb-6">
+                <span class="text-xs uppercase tracking-wider text-zinc-400">Valor do serviço</span>
+                <span class="font-display text-3xl font-bold text-white">R$ 35,00</span>
+              </div>
+
+              <button
+                type="button"
+                data-cal-link="barbearia-modelo/barba"
+                data-cal-config='{"layout":"month_view","theme":"dark"}'
+                class="w-full py-3.5 px-5 rounded-xl bg-dark-800 hover:bg-gold-500 text-light hover:text-dark-950 border border-gold-500/40 hover:border-transparent font-semibold text-sm transition-all duration-200 flex items-center justify-center gap-2 cursor-pointer"
+              >
+                <i data-lucide="calendar" class="w-4 h-4"></i>
+                <span>Agendar este serviço</span>
+              </button>
+            </div>
+          </article>
+
+          <!-- Card 3: Combo VIP (Corte + Barba) - DESTAQUE MAIS PEDIDO -->
+          <article class="group relative rounded-2xl bg-gradient-to-b from-dark-800 to-dark-900 border-2 border-gold-500/80 hover:border-gold-400 transition-all duration-300 p-7 sm:p-8 flex flex-col justify-between hover:-translate-y-1.5 shadow-gold-glow hover:shadow-gold-glow-lg">
+            <!-- Badge Mais Pedido -->
+            <div class="absolute -top-3.5 right-6 gold-gradient-bg text-dark-950 text-xs font-extrabold uppercase tracking-wider px-3.5 py-1 rounded-full shadow-md flex items-center gap-1">
+              <i data-lucide="crown" class="w-3.5 h-3.5 stroke-[2.5]"></i>
+              <span>Mais Pedido</span>
+            </div>
+
+            <div>
+              <div class="flex items-center justify-between gap-4 mb-6">
+                <div class="w-12 h-12 rounded-xl gold-gradient-bg flex items-center justify-center text-dark-950 shadow-md">
+                  <i data-lucide="award" class="w-6 h-6 stroke-[2.2]"></i>
+                </div>
+                <span class="inline-flex items-center gap-1.5 text-xs font-medium text-gold-300 bg-gold-500/10 border border-gold-500/30 px-3 py-1.5 rounded-full">
+                  <i data-lucide="clock" class="w-3.5 h-3.5 text-gold-400"></i>
+                  60 min
+                </span>
+              </div>
+
+              <h3 class="font-display text-2xl uppercase font-bold text-gold-400">
+                Combo VIP (Corte + Barba)
+              </h3>
+
+              <p class="mt-3 text-sm sm:text-base text-zinc-300 leading-relaxed">
+                O tratamento completo de visual com bebida cortesia inclusa.
+              </p>
+
+              <div class="mt-4 inline-flex items-center gap-2 text-xs text-emerald-400 bg-emerald-500/10 border border-emerald-500/20 px-3 py-1 rounded-md">
+                <i data-lucide="check-circle-2" class="w-3.5 h-3.5"></i>
+                <span>Economia de R$ 10,00 + Bebida Cortesia</span>
+              </div>
+            </div>
+
+            <div class="mt-8 pt-6 border-t border-white/10">
+              <div class="flex items-baseline justify-between mb-6">
+                <span class="text-xs uppercase tracking-wider text-zinc-300">Valor do pacote</span>
+                <div class="flex items-baseline gap-2">
+                  <span class="text-xs line-through text-zinc-500">R$ 80,00</span>
+                  <span class="font-display text-3xl font-bold text-gold-400">R$ 70,00</span>
+                </div>
+              </div>
+
+              <button
+                type="button"
+                data-cal-link="barbearia-modelo/combo"
+                data-cal-config='{"layout":"month_view","theme":"dark"}'
+                class="w-full py-3.5 px-5 rounded-xl gold-gradient-bg text-dark-950 font-bold text-sm shadow-gold-glow hover:shadow-gold-glow-lg hover:scale-[1.01] transition-all duration-200 flex items-center justify-center gap-2 cursor-pointer"
+              >
+                <i data-lucide="calendar-check" class="w-4 h-4 stroke-[2.5]"></i>
+                <span>Agendar este serviço</span>
+              </button>
+            </div>
+          </article>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- 4. SEÇÃO "POR QUE AGENDAR PELO SITE?" (VALOR DA AUTOMAÇÃO) -->
+    <section id="diferenciais" class="py-20 lg:py-28 bg-dark-900 border-y border-white/5 relative overflow-hidden">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center max-w-3xl mx-auto mb-16">
+          <span class="text-gold-400 font-semibold text-xs sm:text-sm uppercase tracking-[0.25em] block mb-3">
+            Praticidade &amp; Respeito ao seu Tempo
+          </span>
+          <h2 class="font-display text-3xl sm:text-5xl uppercase font-bold text-white tracking-tight">
+            Por que agendar <span class="gold-gradient-text">pelo site?</span>
+          </h2>
+          <p class="mt-4 text-zinc-400 text-base sm:text-lg">
+            Tecnologia de agendamento inteligente pensada para homens que valorizam cada minuto do seu dia.
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <!-- Bloco 1 -->
+          <div class="p-8 rounded-2xl bg-dark-950/80 border border-white/10 hover:border-gold-500/40 transition-all duration-300">
+            <div class="w-14 h-14 rounded-2xl bg-gold-500/10 border border-gold-500/30 flex items-center justify-center text-gold-400 mb-6">
+              <i data-lucide="user-check" class="w-7 h-7"></i>
+            </div>
+            <h3 class="font-display text-xl sm:text-2xl uppercase font-bold text-white mb-3">
+              Zero Fila de Espera
+            </h3>
+            <p class="text-zinc-400 text-sm sm:text-base leading-relaxed">
+              Seu horário é reservado exclusivamente para você. Chegue no estúdio, tome um café expresso ou uma cerveja gelada e sente-se direto na cadeira.
+            </p>
+          </div>
+
+          <!-- Bloco 2 -->
+          <div class="p-8 rounded-2xl bg-dark-950/80 border border-white/10 hover:border-gold-500/40 transition-all duration-300">
+            <div class="w-14 h-14 rounded-2xl bg-gold-500/10 border border-gold-500/30 flex items-center justify-center text-gold-400 mb-6">
+              <i data-lucide="timer" class="w-7 h-7"></i>
+            </div>
+            <h3 class="font-display text-xl sm:text-2xl uppercase font-bold text-white mb-3">
+              Escolha seu Horário em 30 Segundos
+            </h3>
+            <p class="text-zinc-400 text-sm sm:text-base leading-relaxed">
+              Sem precisar esperar respostas no WhatsApp. Visualize todos os horários livres em tempo real, 24 horas por dia, direto do seu celular.
+            </p>
+          </div>
+
+          <!-- Bloco 3 -->
+          <div class="p-8 rounded-2xl bg-dark-950/80 border border-white/10 hover:border-gold-500/40 transition-all duration-300">
+            <div class="w-14 h-14 rounded-2xl bg-gold-500/10 border border-gold-500/30 flex items-center justify-center text-gold-400 mb-6">
+              <i data-lucide="mail-check" class="w-7 h-7"></i>
+            </div>
+            <h3 class="font-display text-xl sm:text-2xl uppercase font-bold text-white mb-3">
+              Confirmação Imediata no E-mail e Agenda
+            </h3>
+            <p class="text-zinc-400 text-sm sm:text-base leading-relaxed">
+              Assim que finalizar, você recebe o comprovante instantâneo com convite automático para a sua agenda (Google, Apple ou Outlook) e opção fácil de reagendamento.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 5. SEÇÃO LOCALIZAÇÃO E HORÁRIOS DE FUNCIONAMENTO -->
+    <section id="localizacao" class="py-20 lg:py-28 bg-dark-950">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 items-center">
+
+          <!-- Quadro de Horários (5 Colunas) -->
+          <div class="lg:col-span-5 bg-dark-900 border border-gold-500/30 rounded-2xl p-8 sm:p-10 shadow-gold-glow">
+            <div class="inline-flex items-center gap-2 text-gold-400 text-xs font-semibold uppercase tracking-widest mb-3">
+              <i data-lucide="clock-4" class="w-4 h-4"></i>
+              <span>Expediente do Studio</span>
+            </div>
+            <h2 class="font-display text-3xl uppercase font-bold text-white mb-6">
+              Horários de Funcionamento
+            </h2>
+
+            <div class="space-y-4 text-sm sm:text-base">
+              <div class="flex items-center justify-between py-3.5 border-b border-white/10">
+                <span class="text-zinc-300 font-medium">Segunda a Sexta</span>
+                <span class="font-display text-lg font-bold text-gold-400">09h às 20h</span>
+              </div>
+              <div class="flex items-center justify-between py-3.5 border-b border-white/10">
+                <span class="text-zinc-300 font-medium">Sábado</span>
+                <span class="font-display text-lg font-bold text-gold-400">08h às 18h</span>
+              </div>
+              <div class="flex items-center justify-between py-3.5">
+                <span class="text-zinc-500 font-medium">Domingo e Feriados</span>
+                <span class="text-xs uppercase tracking-wider px-2.5 py-1 rounded bg-white/5 text-zinc-400">Fechado</span>
+              </div>
+            </div>
+
+            <div class="mt-8 pt-6 border-t border-white/10 flex items-center gap-3 text-xs sm:text-sm text-zinc-400">
+              <i data-lucide="shield-check" class="w-5 h-5 text-gold-400 shrink-0"></i>
+              <span>Ambiente climatizado, estacionamento privativo e Wi-Fi de alta velocidade.</span>
+            </div>
+          </div>
+
+          <!-- Endereço e Botões de Ação (7 Colunas) -->
+          <div class="lg:col-span-7 flex flex-col justify-between space-y-8">
+            <div>
+              <span class="text-gold-400 font-semibold text-xs sm:text-sm uppercase tracking-[0.25em] block mb-3">
+                Onde Estamos
+              </span>
+              <h2 class="font-display text-3xl sm:text-5xl uppercase font-bold text-white tracking-tight">
+                Localização <span class="gold-gradient-text">Privilegiada</span>
+              </h2>
+              <p class="mt-4 text-zinc-400 text-base sm:text-lg leading-relaxed">
+                Venha viver a experiência do nosso Studio &amp; Club à beira-mar. Fácil acesso e estrutura planejada para o seu máximo conforto.
+              </p>
+            </div>
+
+            <!-- Card de Endereço -->
+            <div class="p-6 sm:p-8 rounded-2xl bg-dark-900/90 border border-white/10 flex flex-col sm:flex-row items-start sm:items-center gap-5">
+              <div class="w-14 h-14 rounded-2xl bg-gold-500/10 border border-gold-500/30 flex items-center justify-center text-gold-400 shrink-0">
+                <i data-lucide="map-pin" class="w-7 h-7"></i>
+              </div>
+              <div>
+                <h3 class="font-display text-xl uppercase font-bold text-white">
+                  Barbearia Modelo — Studio &amp; Club
+                </h3>
+                <p class="text-zinc-300 mt-1 text-sm sm:text-base">
+                  Av. Cabo Branco, João Pessoa - PB
+                </p>
+                <p class="text-zinc-500 text-xs sm:text-sm mt-0.5">
+                  Orla do Cabo Branco • Referência em Cuidado Masculino
+                </p>
+              </div>
+            </div>
+
+            <!-- Botões Google Maps & WhatsApp -->
+            <div class="flex flex-col sm:flex-row items-stretch sm:items-center gap-4">
+              <a
+                href="https://www.google.com/maps/search/?api=1&query=Av.+Cabo+Branco,+Joao+Pessoa+-+PB"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="flex-1 gold-gradient-bg text-dark-950 font-bold text-sm sm:text-base px-6 py-4 rounded-xl shadow-gold-glow hover:shadow-gold-glow-lg transition-all duration-200 flex items-center justify-center gap-2.5"
+              >
+                <i data-lucide="navigation" class="w-5 h-5 stroke-[2.2]"></i>
+                <span>Como Chegar (Google Maps)</span>
+              </a>
+
+              <a
+                href="https://wa.me/5583999999999?text=Ol%C3%A1!%20Gostaria%20de%20tirar%20uma%20d%C3%BAvida%20sobre%20a%20Barbearia%20Modelo."
+                target="_blank"
+                rel="noopener noreferrer"
+                class="flex-1 bg-dark-900 hover:bg-dark-800 text-light border border-emerald-500/40 hover:border-emerald-400 font-semibold text-sm sm:text-base px-6 py-4 rounded-xl transition-all duration-200 flex items-center justify-center gap-2.5"
+              >
+                <i data-lucide="message-circle" class="w-5 h-5 text-emerald-400"></i>
+                <span>Falar no WhatsApp</span>
+              </a>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- 6. FOOTER PROFISSIONAL -->
+  <footer class="bg-dark-900 border-t border-white/10 py-12">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex flex-col md:flex-row items-center justify-between gap-6">
+        <!-- Brand -->
+        <div class="flex items-center gap-3">
+          <div class="w-9 h-9 rounded-lg bg-dark-950 border border-gold-500/40 flex items-center justify-center">
+            <i data-lucide="scissors" class="w-4 h-4 text-gold-500"></i>
+          </div>
+          <div>
+            <span class="font-display text-base uppercase tracking-wider font-bold text-white">
+              Barbearia <span class="text-gold-500">Modelo</span>
+            </span>
+            <span class="text-xs text-zinc-500 block">Studio &amp; Club</span>
+          </div>
+        </div>
+
+        <!-- Copyright -->
+        <p class="text-xs sm:text-sm text-zinc-400 text-center">
+          &copy; <span id="current-year">2026</span> Barbearia Modelo — Studio &amp; Club. Todos os direitos reservados.
+        </p>
+
+        <!-- Crédito Zynex Smart Tech -->
+        <p class="text-xs text-zinc-400 flex items-center gap-1.5 bg-dark-950/80 border border-white/5 px-3.5 py-2 rounded-full">
+          <i data-lucide="cpu" class="w-3.5 h-3.5 text-gold-400"></i>
+          <span>Tecnologia e Agendamento Inteligente por <strong class="text-gold-400 font-semibold">Zynex Smart Tech</strong></span>
+        </p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scripts de Interface (Menu Mobile + Ícones Lucide) -->
+  <script>
+    // Inicializa os ícones Lucide
+    lucide.createIcons();
+
+    // Atualiza o ano atual dinamicamente
+    const yearEl = document.getElementById('current-year');
+    if (yearEl) {
+      yearEl.textContent = new Date().getFullYear();
+    }
+
+    // Controle do Menu Mobile
+    const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+    const mobileMenu = document.getElementById('mobile-menu');
+    const iconOpen = document.getElementById('menu-icon-open');
+    const iconClose = document.getElementById('menu-icon-close');
+    const mobileNavLinks = document.querySelectorAll('.mobile-nav-link');
+
+    function toggleMobileMenu() {
+      const isHidden = mobileMenu.classList.contains('hidden');
+      if (isHidden) {
+        mobileMenu.classList.remove('hidden');
+        iconOpen.classList.add('hidden');
+        iconClose.classList.remove('hidden');
+        mobileMenuBtn.setAttribute('aria-expanded', 'true');
+      } else {
+        mobileMenu.classList.add('hidden');
+        iconOpen.classList.remove('hidden');
+        iconClose.classList.add('hidden');
+        mobileMenuBtn.setAttribute('aria-expanded', 'false');
+      }
+    }
+
+    if (mobileMenuBtn) {
+      mobileMenuBtn.addEventListener('click', toggleMobileMenu);
+    }
+
+    mobileNavLinks.forEach((link) => {
+      link.addEventListener('click', () => {
+        if (!mobileMenu.classList.contains('hidden')) {
+          toggleMobileMenu();
+        }
+      });
+    });
+  </script>
+
+  <!-- Cal element-click embed code begins -->
+  <script type="text/javascript">
+    (function (C, A, L) { let p = function (a, ar) { a.q.push(ar); }; let d = C.document; C.Cal = C.Cal || function () { let cal = C.Cal; let ar = arguments; if (!cal.loaded) { cal.ns = {}; cal.q = cal.q || []; d.head.appendChild(d.createElement("script")).src = A; cal.loaded = true; } if (ar[0] === L) { const api = function () { p(api, arguments); }; const namespace = ar[1]; api.q = api.q || []; if(typeof namespace === "string"){cal.ns[namespace] = cal.ns[namespace] || api;p(cal.ns[namespace], ar);p(cal, ["initNamespace", namespace]);} else p(cal, ar); return;} p(cal, ar); }; })(window, "https://agenda.zynexsmart.tech/embed/embed.js", "init");
+    Cal("init", {origin:"https://agenda.zynexsmart.tech"});
+
+    Cal("ui", {"theme":"dark","styles":{"branding":{"brandColor":"#d4af37"}},"hideEventTypeDetails":false,"layout":"month_view"});
+  </script>
+  <!-- Cal element-click embed code ends -->
+</body>
+</html>
